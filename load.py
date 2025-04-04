@@ -10,7 +10,7 @@ import time
 
 this = sys.modules[__name__]  # For holding module globals
 
-CFG_CARGO_OPERATION_TRACKER = "CargoOperationTracker"
+CFG_CARGO_OPERATION_TRACKER = "cargo-operation-tracker"
 
 class DockingOperation(object):
     """
@@ -204,4 +204,4 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
         if "Docked" in entry["event"]:
             this.cargo_operation_tracker.register_docking(entry["StationName"])
         elif "Cargo" in entry["event"]:
-            this.cargo_operation_tracker.register_cargo_operation(entry)
+            this.cargo_operation_tracker.register_cargo_operation(entry, cmdr, station)
